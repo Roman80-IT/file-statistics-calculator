@@ -15,7 +15,13 @@ https
     response.on("end", () => {
       // Обробка даних
       const numbers = data.trim().split("\n").map(Number);
-      console.log(numbers);
+
+      const maxNum = Math.max(...numbers);
+
+      const minNum = Math.min(...numbers);
+
+      console.log(`Максимальне число: ${maxNum}`);
+      console.log(`Мінімальне число: ${minNum}`);
     });
   })
   .on("error", (err) => {
