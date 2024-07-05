@@ -30,10 +30,56 @@ https
       // Середнє арифметичне
       const mean = numbers.reduce((sum, num) => sum + num, 0) / n;
 
+      // Найбільша зростаюча послідовність
+      function longestIncreasingSubsequence(arr) {
+        let longest = [];
+        let current = [];
+        for (let i = 0; i < arr.length; i++) {
+          if (current.length === 0 || arr[i] > current[current.length - 1]) {
+            current.push(arr[i]);
+          } else {
+            if (current.length > longest.length) {
+              longest = current;
+            }
+            current = [arr[i]];
+          }
+        }
+        if (current.length > longest.length) {
+          longest = current;
+        }
+        return longest;
+      }
+
+      // Найбільша спадна послідовність
+      function longestDecreasingSubsequence(arr) {
+        let longest = [];
+        let current = [];
+        for (let i = 0; i < arr.length; i++) {
+          if (current.length === 0 || arr[i] < current[current.length - 1]) {
+            current.push(arr[i]);
+          } else {
+            if (current.length > longest.length) {
+              longest = current;
+            }
+            current = [arr[i]];
+          }
+        }
+        if (current.length > longest.length) {
+          longest = current;
+        }
+        return longest;
+      }
+
+      const longestIncreasing = longestIncreasingSubsequence(numbers);
+      const longestDecreasing = longestDecreasingSubsequence(numbers);
+
+      // Виведення результатів
       console.log(`Максимальне число: ${maxNum}`);
       console.log(`Мінімальне число: ${minNum}`);
       console.log(`Медіана: ${median}`);
       console.log(`Середнє арифметичне: ${mean}`);
+      console.log(`Найбільша зростаюча послідовність: ${longestIncreasing}`);
+      console.log(`Найбільша спадна послідовність: ${longestDecreasing}`);
     });
   })
   .on("error", (err) => {
