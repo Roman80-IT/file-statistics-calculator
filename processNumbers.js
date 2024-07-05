@@ -13,8 +13,9 @@ https
     });
 
     response.on("end", () => {
-      // Дані завантажено, наступний етап - обробка даних
-      console.log(data);
+      // Обробка даних
+      const numbers = data.trim().split("\n").map(Number);
+      console.log(numbers);
     });
   })
   .on("error", (err) => {
