@@ -15,13 +15,25 @@ https
     response.on("end", () => {
       // Обробка даних
       const numbers = data.trim().split("\n").map(Number);
+      const sortedNumbers = [...numbers].sort((a, b) => a - b);
+      const n = sortedNumbers.length;
 
       const maxNum = Math.max(...numbers);
-
       const minNum = Math.min(...numbers);
+
+      // Медіана
+      const median =
+        n % 2 === 1
+          ? sortedNumbers[Math.floor(n / 2)]
+          : (sortedNumbers[n / 2 - 1] + sortedNumbers[n / 2]) / 2;
+
+      // Середнє арифметичне
+      const mean = numbers.reduce((sum, num) => sum + num, 0) / n;
 
       console.log(`Максимальне число: ${maxNum}`);
       console.log(`Мінімальне число: ${minNum}`);
+      console.log(`Медіана: ${median}`);
+      console.log(`Середнє арифметичне: ${mean}`);
     });
   })
   .on("error", (err) => {
